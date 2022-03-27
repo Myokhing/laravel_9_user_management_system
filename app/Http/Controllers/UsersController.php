@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
@@ -26,7 +27,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all()->pluck('name', 'id');
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -37,17 +39,26 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        // $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
+        // return redirect()->route('admin.users.index');
+        //$user = User::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->roles()->sync($request->input('roles', []));
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -71,7 +82,11 @@ class UsersController extends Controller
     public function edit($id)
     {
         $edit_user = User::find($id);
-        return view('admin.users.edit', compact('edit_user'));
+        $roles = Role::all()->pluck('name', 'id');
+
+        $edit_user->load('roles');
+
+        return view('admin.users.edit', compact('roles', 'edit_user'));
     }
 
     /**
@@ -93,6 +108,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
+        $user->roles()->sync($request->input('roles', []));
         return redirect()->route('admin.users.index');
     }
 

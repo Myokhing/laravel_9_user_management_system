@@ -19,6 +19,7 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Email</th>
+                          <th>Role</th>
                           <th>Created At</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -28,6 +29,7 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Email</th>
+                          <th>Role</th>
                           <th>Created At</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -38,6 +40,11 @@
                           <td>{{ $user->id }}</td>
                           <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
+                           <td>
+                                @foreach($user->roles as $key => $item)
+                                    <span class="badge badge-info">{{ $item->name }}</span>
+                                @endforeach
+                            </td>
                           <td>{{ $user->created_at }}</td>
                           <td class="text-right">
                             <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>

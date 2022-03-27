@@ -48,6 +48,18 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label">Role</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <select name="roles[]" id="roles" class="selectpicker" data-size="7" data-style="btn btn-primary btn-round" multiple="multiple" required>
+                    @foreach($roles as $id => $roles)
+                        <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
+                    @endforeach
+                </select>
+                        </div>
+                      </div>
+                    </div>  
                     <div class="card-footer ">
                   <button type="submit" class="btn btn-fill btn-rose">Submit</button>
                 </div>
