@@ -7,7 +7,11 @@
                     <div class="card-icon">
                       <i class="material-icons"></i>
                     </div>
-                    <h4 class="card-title">Role List <span><a href="{{ route('admin.roles.create') }}"  class="btn btn-primary">Role Create</a></span></h4>
+                    <h4 class="card-title">Role List <span>
+                    @can('role_create')
+                    <a href="{{ route('admin.roles.create') }}"  class="btn btn-primary">Role Create</a>
+                    @endcan
+                  </span></h4>
                   </div>
                   <div class="card-body ">
                     <div class="row">
@@ -43,14 +47,19 @@
                             @endforeach
                           <td>{{ $role->created_at }}</td>
                           <td class="text-right">
+                          @can('role_show')
                             <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
+                          @endcan
+                          @can('role_edit')
                             <a href="{{route('admin.roles.edit', $role->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                            
+                          @endcan
+                          @can('role_delete')
                             <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('are you sure want to delete');" style="display: inline-block;">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></button>
                             </form>
+                          @endcan
                           </td>
                         </tr>
                         @endforeach

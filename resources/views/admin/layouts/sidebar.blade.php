@@ -116,34 +116,17 @@
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
               <i class="material-icons">apps</i>
-              <p> Components
+              <p> School Management
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse" id="componentsExamples">
               <ul class="nav">
+                
                 <li class="nav-item ">
-                  <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-                    <span class="sidebar-mini"> MLT </span>
-                    <span class="sidebar-normal"> Multi Level Collapse
-                      <b class="caret"></b>
-                    </span>
-                  </a>
-                  <div class="collapse" id="componentsCollapse">
-                    <ul class="nav">
-                      <li class="nav-item ">
-                        <a class="nav-link" href="#0">
-                          <span class="sidebar-mini"> E </span>
-                          <span class="sidebar-normal"> Example </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/components/buttons.html">
-                    <span class="sidebar-mini"> B </span>
-                    <span class="sidebar-normal"> Buttons </span>
+                  <a class="nav-link" href="{{ route('admin.chapters.index') }}">
+                    <span class="sidebar-mini"> G C </span>
+                    <span class="sidebar-normal"> Grade 6 Chapter </span>
                   </a>
                 </li>
                 <li class="nav-item ">

@@ -7,7 +7,12 @@
                     <div class="card-icon">
                       <i class="material-icons"></i>
                     </div>
-                    <h4 class="card-title">Permission List <span><a href="{{ route('admin.permissions.create') }}"  class="btn btn-primary">Permission Create</a></span></h4>
+                    <h4 class="card-title">Permission List <span>
+                  @can('permission_create')
+                    <a href="{{ route('admin.permissions.create') }}"  class="btn btn-primary">Permission Create</a>
+                  @endcan
+                    </span></h4>
+                  </span></h4>
                   </div>
                   <div class="card-body ">
                     <div class="row">
@@ -37,14 +42,19 @@
                           <td>{{ $permission->name }}</td>
                           <td>{{ $permission->created_at }}</td>
                           <td class="text-right">
+                          @can('permission_show')
                             <a href="{{ route('admin.permissions.show', $permission->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
+                          @endcan
+                          @can('permission_edit')
                             <a href="{{route('admin.permissions.edit', $permission->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                            
+                            @endcan
+                            @can('permission_delete')
                             <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" onsubmit="return confirm('are you sure want to delete');" style="display: inline-block;">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></button>
                             </form>
+                            @endcan
                           </td>
                         </tr>
                         @endforeach

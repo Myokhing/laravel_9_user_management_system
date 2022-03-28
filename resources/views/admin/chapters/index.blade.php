@@ -7,11 +7,12 @@
                     <div class="card-icon">
                       <i class="material-icons"></i>
                     </div>
-                    <h4 class="card-title">Users List <span>
-                      @can('user_create')
-                      <a href="{{ route('admin.users.create') }}"  class="btn btn-primary">User Create</a>
-                      @endcan
+                    <h4 class="card-title">Chapter List <span>
+                  @can('chapter_create')
+                    <a href="{{ route('admin.chapters.create') }}"  class="btn btn-primary">Chapter Create</a>
+                  @endcan
                     </span></h4>
+                  </span></h4>
                   </div>
                   <div class="card-body ">
                     <div class="row">
@@ -22,8 +23,6 @@
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Email</th>
-                          <th>Role</th>
                           <th>Created At</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -32,38 +31,30 @@
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Email</th>
-                          <th>Role</th>
                           <th>Created At</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
                       </tfoot>
                       <tbody>
-                        @foreach($users as $user)
+                        @foreach($chapters as $chapter)
                         <tr>
-                          <td>{{ $user->id }}</td>
-                          <td>{{ $user->name }}</td>
-                          <td>{{ $user->email }}</td>
-                           <td>
-                                @foreach($user->roles as $key => $item)
-                                    <span class="badge badge-info">{{ $item->name }}</span>
-                                @endforeach
-                            </td>
-                          <td>{{ $user->created_at }}</td>
+                          <td>{{ $chapter->id }}</td>
+                          <td>{{ $chapter->name }}</td>
+                          <td>{{ $chapter->created_at }}</td>
                           <td class="text-right">
-                          @can('user_show')
-                            <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
+                          @can('chapter_show')
+                            <a href="{{ route('admin.chapters.show', $chapter->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                           @endcan
-                          @can('user_edit')
-                            <a href="{{route('admin.users.edit', $user->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                          @endcan
-                          @can('user_delete')
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('are you sure want to delete');" style="display: inline-block;">
+                          @can('chapter_edit')
+                            <a href="{{route('admin.chapters.edit', $chapter->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                            @endcan
+                            @can('chapter_delete')
+                            <form action="{{ route('admin.chapters.destroy', $chapter->id) }}" method="POST" onsubmit="return confirm('are you sure want to delete');" style="display: inline-block;">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></button>
                             </form>
-                          @endcan
+                            @endcan
                           </td>
                         </tr>
                         @endforeach
