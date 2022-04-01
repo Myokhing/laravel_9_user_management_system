@@ -44,7 +44,7 @@ class ChapterController extends Controller
         $chapter->name = $request->name;
         $chapter->save();
 
-        return redirect()->route('chapters.index')->with('success', 'Chapter created successfully');
+        return redirect()->route('admin.chapters.index')->with('success', 'Chapter created successfully');
     }
 
     /**
@@ -70,6 +70,10 @@ class ChapterController extends Controller
         $edit_chapter = Chapter::find($chapter->id);
         return view('admin.chapters.edit', compact('edit_chapter'));
     }
+    // {
+    //     $edit_chapter = Chapter::find($chapter->id);
+    //     return view('admin.chapters.edit', compact('edit_chapter'));
+    // }
 
     /**
      * Update the specified resource in storage.

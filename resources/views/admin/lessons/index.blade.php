@@ -13,9 +13,9 @@
                           {{session('success')}}
                         </div>
                     @endif
-                    <h4 class="card-title">Chapter List <span>
-                  @can('chapter_create')
-                    <a href="{{ route('admin.chapters.create') }}"  class="btn btn-primary">Chapter Create</a>
+                    <h4 class="card-title">Lesson List <span>
+                  @can('lesson_create')
+                    <a href="{{ route('admin.lessons.create') }}"  class="btn btn-primary">Lesson Create</a>
                   @endcan
                     </span></h4>
                   </span></h4>
@@ -42,20 +42,20 @@
                         </tr>
                       </tfoot>
                       <tbody>
-                        @foreach($chapters as $chapter)
+                        @foreach($lessons as $lesson)
                         <tr>
-                          <td>{{ $chapter->id }}</td>
-                          <td>{{ $chapter->name }}</td>
-                          <td>{{ $chapter->created_at }}</td>
+                          <td>{{ $lesson->id }}</td>
+                          <td>{{ $lesson->name }}</td>
+                          <td>{{ $lesson->created_at }}</td>
                           <td class="text-right">
-                          @can('chapter_show')
-                            <a href="{{ route('admin.chapters.show', $chapter->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
+                          @can('lesson_show')
+                            <a href="{{ route('admin.lessons.show', $lesson->id) }}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                           @endcan
-                          @can('chapter_edit')
-                            <a href="{{route('admin.chapters.edit', $chapter->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                          @can('lesson_edit')
+                            <a href="{{route('admin.lessons.edit', $lesson->id) }}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
                             @endcan
-                            @can('chapter_delete')
-                            <form action="{{ route('admin.chapters.destroy', $chapter->id) }}" method="POST" onsubmit="return confirm('Are Sure Want To Delete');" style="display: inline-block;">
+                            @can('lesson_delete')
+                            <form action="{{ route('admin.lessons.destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Are Sure Want To Delete');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-sm btn-danger" value="Delete">

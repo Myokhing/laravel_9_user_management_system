@@ -15,26 +15,27 @@
               <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                   <div class="card-text">
-                    <h4 class="card-title">Chapter Detail</h4>
+                    <h4 class="card-title">Chapter Edit</h4>
                   </div>
                 </div>
                 <div class="card-body ">
-                 <div class="table-responsive">
-                  <table class="table">
-                   <tr>
-                    <th>ID</th>
-                    <td>{{ $show_chapter->id }}</td>
-                   </tr>
-                   <tr>
-                    <th>Name</th>
-                    <td>{{ $show_chapter->name }}</td>
-                   </tr>
-                  
-                   <tr>
-                    <th>Created_At</th>
-                    <td>{{ $show_chapter->created_at }}</td>
-                   </tr>
-                  </table>
+                  <form method="POST" action="{{ route('admin.chapters.update', [$edit_chapter->id]) }}"  class="form-horizontal">
+                   @csrf
+                   @method('PUT')
+                    <div class="row">
+                      <label class="col-sm-2 col-form-label"> Chapter Name</label>
+                      <div class="col-sm-10">
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="name" value="{{ old('name', isset($edit_chapter) ? $edit_chapter->name : '') }}" >
+                          <span class="bmd-help">Chapter Name</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                  <button type="submit" class="btn btn-fill btn-rose">Update</button>
+                </div>
+                    
+                  </form>
                 </div>
               </div>
             </div>          

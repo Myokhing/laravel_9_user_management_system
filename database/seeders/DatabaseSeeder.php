@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             ChaptersSeederTable::class,
+            LessonsTableSeeder::class,
 
             /* 
             1 - php artisan make:seeder PermissionsTableSeeder 

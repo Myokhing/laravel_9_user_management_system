@@ -130,9 +130,9 @@
                   </a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="../examples/components/grid.html">
-                    <span class="sidebar-mini"> GS </span>
-                    <span class="sidebar-normal"> Grid System </span>
+                  <a class="nav-link" href="{{ route('admin.lessons.index')}}">
+                    <span class="sidebar-mini"> G L </span>
+                    <span class="sidebar-normal"> Grade 6 Lesson </span>
                   </a>
                 </li>
                 <li class="nav-item ">
