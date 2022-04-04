@@ -9,4 +9,9 @@ class Lesson extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    public function english_lesson()
+    {
+        return $this->belongsToMany(English::class);
+    }
 }

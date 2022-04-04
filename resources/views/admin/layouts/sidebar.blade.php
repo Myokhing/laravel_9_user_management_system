@@ -136,9 +136,9 @@
                   </a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="../examples/components/panels.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Panels </span>
+                  <a class="nav-link" href="{{ route('admin.englishes.index') }}">
+                    <span class="sidebar-mini"> G E S </span>
+                    <span class="sidebar-normal"> G 6 - English Sub </span>
                   </a>
                 </li>
                 <li class="nav-item ">
